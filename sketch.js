@@ -76,7 +76,7 @@ class Quiz {
         this.indexList = [];
         this.index;
         this.counter;
-        // this.input = 'GO!';
+        this.input = 'GO!';
         // this.inputLang = 'en-GB';
     }
 
@@ -93,7 +93,7 @@ class Quiz {
         // this.answers_zh = [];
         // this.answers_en = [];
         this.indexList = [];
-        // this.input = 'GO!';
+        this.input = 'GO!';
 
         /// * Create quiz and answer * ///
         for (let i = 1; i < 10; i++) {
@@ -139,7 +139,7 @@ class Quiz {
     // jump to the next  
     updateIndex() {
         this.counter++;
-        if (this.counter >= 20) speechRec.stop();
+        // if (this.counter >= 20) speechRec.stop();
         this.index = this.indexList[this.counter];
         this.waitTimer = millis();
 
@@ -201,7 +201,7 @@ class Quiz {
 
 
         // draw title and quiz
-        if (this.counter == -1) {
+        if (this.input == 'GO!') {
             textSize(120);
             text('READY?', 0, 0);
         } else if (this.counter >= 20) {
@@ -214,13 +214,14 @@ class Quiz {
 
 
         // draw GO! and speech resultString
-        // textSize(24);
-        // push();
+        textSize(24);
+        push();
         // fill(0, 0, 0, speechAlpha);
         // speechAlpha -= 3;
         // if (this.input == 'GO!') fill(0, 0, 0, 255);
-        // text(this.input, 0, 100);
-        // pop();
+        fill(0);
+        text(this.input, 0, 100);
+        pop();
 
 
         // draw timer
@@ -263,6 +264,9 @@ class Quiz {
 
 
 function mouseClicked() {
+
+    quiz.input = '';
+
     if (quiz.counter <= 0) {
         quiz.startTimer = millis();
     }
